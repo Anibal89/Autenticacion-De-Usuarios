@@ -1,0 +1,14 @@
+CREATE TABLE usersd(
+	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    user VARCHAR(50) NOT NULL,
+    pass TEXT NOT NULL
+);
+
+CREATE TABLE notes(
+	note_id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    user_id INT(11) NOT NULL,
+    title VARCHAR(100) NOT NULL,
+    note TEXT NOT NULL,
+    date TEXT NOT NULL,
+    CONSTRAINT fk_user_id FOREIGN KEY (user_id) REFERENCES usersd(id)
+);
