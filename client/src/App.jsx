@@ -9,6 +9,7 @@ function App() {
   return (
    <>
     <BrowserRouter>
+    {/*Rutas de Accesso*/}
     <Routes>
       <Route path='/' element={<Home/>}/>
       <Route path='/login' element={<Login/>}/>
