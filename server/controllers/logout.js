@@ -1,6 +1,6 @@
 const logout = (req,res)=>{
     res.clearCookie('logUser');
-    res.text('ok')
+    res.json('ok')
 }
 
 module.exports = logout;

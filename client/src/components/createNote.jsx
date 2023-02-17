@@ -1,6 +1,8 @@
 import React, { useState,useContext } from "react";
 
 import { userContext } from "./Home";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const CreateNote = () => {
    
@@ -31,6 +33,13 @@ const CreateNote = () => {
 
   const handleAddNota = (e) => {
     e.preventDefault();
+    if (notas.note.length === 0 || notas.title.length === 0)
+      return toast.warn(
+        "por favor complete el formulario de notas",
+        {
+          autoClose: 2000,
+        }
+      );
     fetch('/api/createnote', {
       body: JSON.stringify(notas),
       method: 'POST',
@@ -42,7 +51,7 @@ const CreateNote = () => {
       .then(data => {
         if (data.status)  {
 
-          sendMessage(data.message,'success');  
+          toast.success(data.message, { autoClose: 1500 }); 
           runNoteUpdate(prev => prev + 1);
 
           // toast.success(data.message, { autoClose: 1500 });
@@ -51,8 +60,8 @@ const CreateNote = () => {
           // }, 5 * 1000);
         }
         else  {
-          // toast.error(data.message, { autoClose: 2000 });
-          sendMessage(data.message);
+          toast.error(data.message, { autoClose: 2000 });
+          // sendMessage(data.message);
         }
       }); 
   };
@@ -61,6 +70,7 @@ const CreateNote = () => {
 
   return (
     <>
+      <ToastContainer />
        <div className="card mt-5">
         <div className="card-body">
           <h3>Crear Nota</h3>

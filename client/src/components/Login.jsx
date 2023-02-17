@@ -52,7 +52,7 @@ const Login = () => {
 
   const handlelogin = (e) => {
     e.preventDefault();
-    if (datos.user.length < 3 || datos.pass.length < 3)
+    if (datos.user.length === 0 || datos.pass.length === 0)
       return toast.warn(
         "por favor complete los campos del formulario correctamente",
         {

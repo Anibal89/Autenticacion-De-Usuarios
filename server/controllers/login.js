@@ -16,7 +16,9 @@ const login = async (req,res)=>{
 
         const cookieOption = {
             expiresIn: new Date(Date.now() * process.env.COOKIE_EXPIRES * 24 * 60 *60 *1000),
-            httpOnly:true
+            httpOnly:true,
+            secure: true,
+            sameSite: "none",
         }
         res.cookie('logUser',token,cookieOption)
         return res.json({status: 1, message: '¡El usuario ha iniciado sesión!'})
