@@ -54,7 +54,7 @@ const Register = () => {
         }
       );
 
-    await fetch("/api/auth/register", {
+    await fetch("/api/register", {
       method: "POST",
       body: JSON.stringify(datos),
       headers: {
