@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import './App.css'
+import "./App.css";
 
+import logo from "./logo.svg";
+import node from "./Nodelogo.svg";
 
-import logo from './logo.svg';
-import node from './Nodelogo.svg';
+import axios from 'axios';
 
 const Nav = () => {
   const navegar = useNavigate();
@@ -12,8 +13,34 @@ const Nav = () => {
   const [logged, status] = useState(false);
   const [user, Uuser] = useState("");
 
+
+// Logeo de usuarios con axios
+
+/* const URL_Logged = '/api/auth/isLogged';
+
+  const getUser = async () => {
+    const res = axios.get(URL_Logged);
+    return res;
+  };
+
+useEffect(() => {
+    getUser().then(res => {
+     if(res.data.status)
+     {
+      status(true);
+      Uuser(res.data.user);
+     }
+     else {
+      status(false);
+     }
+
+    })
+ }, []);
+ */
+
+//Logeo de usuarios con fetch
   useEffect(() => {
-    fetch("/api/isLogged")
+     fetch("/api/isLogged")
       .then((res) => res.json())
       .then((data) => {
         if (data.status) {
@@ -22,8 +49,18 @@ const Nav = () => {
         } else {
           status(false);
         }
-      });
+      }); 
   }, []);
+
+
+  // const URL_Logout = '/api/auth/logout';
+  // const handleLogout = () =>{
+  //   const res = axios.get(URL_Logout);
+  //   return res;
+  // }
+
+ //.then((res) => res.text())
+ //.then((data) => navegar("/login"))
 
   return (
     <>
@@ -37,17 +74,12 @@ const Nav = () => {
               src={logo}
               width="50"
               height="50"
-              className="App-logo" 
+              className="App-logo"
               alt="logo"
             />
           </a>
           <a className="navbar-brand" href="/">
-            <img
-              src={node}
-              width="50"
-              height="50"
-              alt="logo"
-            />
+            <img src={node} width="50" height="50" alt="logo" />
           </a>
           <button
             className="navbar-toggler"

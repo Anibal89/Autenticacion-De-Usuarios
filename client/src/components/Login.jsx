@@ -36,23 +36,11 @@ const Login = () => {
     });
   };
 
-  // const URLPOST = "http://localhost:4000/api/desperdicio/loginpro";
-
-  // const handleAddRegistro = async (e) => {
-  //   e.preventDefault();
-  //   if (datos.user.length < 3 || datos.pass.length < 3)
-  //     return sendMessage(
-  //       "por favor complete los campos del formulario correctamente"
-  //     );
-  //   const respuesta = await axios.post(URLPOST, datos)
-  //       if (respuesta.data.status) {sendMessage(respuesta.data.message, "success");}
-  //       else {sendMessage(respuesta.data.message)};
-  //    console.log(respuesta)
-  // };
+  //Metodo Login con fetch 
 
   const handlelogin = (e) => {
     e.preventDefault();
-    if (datos.user.length === 0 || datos.pass.length === 0)
+    if (datos.user.length < 3 || datos.pass.length < 3)
       return toast.warn(
         "por favor complete los campos del formulario correctamente",
         {
@@ -79,6 +67,33 @@ const Login = () => {
         else  {toast.error(data.message, { autoClose: 2000 });}
       });
   };
+
+// Metodo login con axios refactorizado
+
+/*  const UrlLogin = "/api/auth/login";
+
+  const handlelogin = async(e) => {
+
+    e.preventDefault();
+    if (datos.user.length === 0 || datos.pass.length === 0)
+      return toast.warn(
+        "por favor complete los campos del formulario correctamente",
+        {
+          autoClose: 2000,
+        }
+      );
+
+       const res = await axios.post(UrlLogin, datos)
+        if (res.data.status)  {
+          toast.success(res.data.message, { autoClose: 1500 });
+          setTimeout(() => {
+          navegar("/");
+          }, 5 * 1000);
+        }  else  {
+          toast.error(res.data.message, { autoClose: 2000 });
+        }
+  }; */
+
 
   return (
     <>

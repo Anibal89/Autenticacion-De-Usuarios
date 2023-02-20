@@ -38,38 +38,15 @@ const Register = () => {
     });
   };
 
-  //Notificacion
 
-  // const URLPOST = "http://localhost:4000/api/desperdicio/registerpro";
-
-  // const handleAddRegistro = async (e) => {
-  //   e.preventDefault();
-  //   if (datos.user.length === 0 || datos.pass.length === 0)
-  //     return toast.warn(
-  //       "por favor complete los campos del formulario correctamente",
-  //       { autoClose: 2000 }
-  //     );
-
-  //   const respuesta = await axios.post(URLPOST, datos);
-  //   if (respuesta.data.status) {
-  //     sendMessage(respuesta.data.message, "success");
-  //     toast.info(respuesta.data.message, { autoClose: 2000 });
-  //   } else {
-  //     sendMessage(respuesta.data.message)
-  //     toast.error(respuesta.data.message, { autoClose: 2000 });
-  //   }
-  //   SetUser({
-  //     user: "",
-  //     pass: "",
-  //   });
-  // };
+  //Metodo register con fecth
 
   const handleAddRegistro = async (e) => {
     e.preventDefault();
     if (datos.user.length < 3 || datos.pass.length < 3)
-      // return sendMessage(
-      //   "por favor complete los campos del formulario correctamente"
-      // );
+     /*  return sendMessage(
+         "por favor complete los campos del formulario correctamente"
+       ); */
       return toast.warn(
         "por favor complete los campos del formulario correctamente",
         {
@@ -77,7 +54,7 @@ const Register = () => {
         }
       );
 
-    await fetch("/api/register", {
+    await fetch("/api/auth/register", {
       method: "POST",
       body: JSON.stringify(datos),
       headers: {
@@ -97,6 +74,32 @@ const Register = () => {
         }
       });
   };
+
+//Metodo Register con axios
+
+/* const UrlRegister = "/api/auth/register";
+
+   const handleAddRegistro = async(e) => {
+
+    e.preventDefault();
+    if (datos.user.length === 0 || datos.pass.length === 0)
+      return toast.warn(
+        "por favor complete los campos del formulario correctamente",
+        {
+          autoClose: 2000,
+        }
+      );
+
+       const res = await axios.post(UrlRegister, datos)
+        if (res.data.status)  {
+          toast.info(res.data.message, { autoClose: 1500 });
+          setTimeout(() => {
+          navegar("/login");
+          }, 5 * 1000);
+        }  else  {
+          toast.error(res.data.message, { autoClose: 2000 });
+        }
+  }; */
 
   return (
     <Fragment>
